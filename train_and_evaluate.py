@@ -1,6 +1,18 @@
+import copy
+
 import torch
 import torch_geometric
 from sklearn.metrics import f1_score
+
+
+def _macro_f1_and_acc(logits: torch.Tensor, y: torch.Tensor, mask: torch.Tensor):
+    pred = logits.argmax(dim=1)
+    y_true = y[mask].cpu()
+    y_pred = pred[mask].cpu()
+    f1 = f1_score(y_true, y_pred, average='macro')
+    acc = (y_pred == y_true).sum().item() / len(y_true)
+    return f1, acc
+
 
 def train_and_evaluate(
     model: torch.nn.Module,
@@ -17,12 +29,11 @@ def train_and_evaluate(
     optimizer = torch.optim.Adam(params=model.parameters(), lr=0.01, weight_decay=5e-4)
     criterion = torch.nn.CrossEntropyLoss(weight=class_weights)
 
-    best_f1 = 0
-    best_acc = 0
+    best_val_f1 = -1.0
+    best_state = None
     epochs_no_improve = 0
 
     for epoch in range(max_epochs):
-        # train using only the train edge index and train edge attributes
         model.train()
         logits = model(data.x, data.train_edge_index, data.train_edge_attr)
         loss_value = criterion(logits[data.train_mask], data.y[data.train_mask])
@@ -30,39 +41,38 @@ def train_and_evaluate(
         loss_value.backward()
         optimizer.step()
 
-        # during evaluation we use full edge index and full edge attributtes
-        # we calculate loss only for test mask
         model.eval()
         with torch.no_grad():
-            logits_val = model(data.x, data.edge_index, data.edge_attr)
-            loss_value_val = criterion(logits[data.test_mask], data.y[data.test_mask])
-        
-            pred_val = logits_val.argmax(dim=1)
+            logits_val = model(data.x, data.trainval_edge_index, data.trainval_edge_attr)
+            val_f1, _ = _macro_f1_and_acc(logits_val, data.y, data.val_mask)
 
-            y_true = data.y[data.test_mask].cpu()
-            y_pred = pred_val[data.test_mask].cpu()
-
-            f1 = f1_score(y_true, y_pred, average='macro')
-            correct = (y_pred == y_true).sum().item()
-            acc = correct / len(y_true)
-
-            if f1 > best_f1:
-                best_f1, best_acc = f1, acc
+            if val_f1 > best_val_f1:
+                best_val_f1 = val_f1
+                best_state = copy.deepcopy(model.state_dict())
                 epochs_no_improve = 0
             else:
                 epochs_no_improve += 1
-        
+
         if epochs_no_improve >= patience:
             break
-    
-    return best_f1, best_acc, model
+
+    if best_state is not None:
+        model.load_state_dict(best_state)
+    model.eval()
+    with torch.no_grad():
+        logits_test = model(data.x, data.edge_index, data.edge_attr)
+        test_f1, test_acc = _macro_f1_and_acc(logits_test, data.y, data.test_mask)
+
+    return test_f1, test_acc, model
+
 
 def train_mlp(
         model: torch.nn.Module,
         features: torch.Tensor,
         targets: torch.Tensor,
-        t_mask: torch.Tensor,
-        v_mask: torch.Tensor,
+        train_mask: torch.Tensor,
+        val_mask: torch.Tensor,
+        test_mask: torch.Tensor,
         device: torch.device,
         class_weights: torch.Tensor,
         epochs=500,
@@ -71,36 +81,41 @@ def train_mlp(
     features = features.to(device)
     targets = targets.to(device)
     class_weights_gpu = class_weights.to(device)
-    
+
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4)
     criterion = torch.nn.CrossEntropyLoss(weight=class_weights_gpu)
 
-    best_f1, best_acc = 0, 0
+    best_val_f1 = -1.0
+    best_state = None
     patience, counter = 30, 0
 
     for epoch in range(epochs):
         model.train()
         optimizer.zero_grad()
         out = model(features)
-        loss = criterion(out[t_mask], targets[t_mask])
+        loss = criterion(out[train_mask], targets[train_mask])
         loss.backward()
         optimizer.step()
 
         model.eval()
         with torch.no_grad():
-            pred = out.argmax(dim=1)
-            y_true = targets[v_mask].cpu()
-            y_pred = pred[v_mask].cpu()
-            
-            f1 = f1_score(y_true, y_pred, average='macro')
-            acc = (y_pred == y_true).sum().item() / len(y_true)
+            val_f1, _ = _macro_f1_and_acc(out, targets, val_mask)
 
-            if f1 > best_f1:
-                best_f1, best_acc = f1, acc
+            if val_f1 > best_val_f1:
+                best_val_f1 = val_f1
+                best_state = copy.deepcopy(model.state_dict())
                 counter = 0
             else:
                 counter += 1
-        
-        if counter >= patience: break
 
-    return best_f1, best_acc, model
+        if counter >= patience:
+            break
+
+    if best_state is not None:
+        model.load_state_dict(best_state)
+    model.eval()
+    with torch.no_grad():
+        out = model(features)
+        test_f1, test_acc = _macro_f1_and_acc(out, targets, test_mask)
+
+    return test_f1, test_acc, model
