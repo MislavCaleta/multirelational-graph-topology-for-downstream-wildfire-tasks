@@ -42,26 +42,71 @@ def compute_edge_attributes(
 
     return edge_attr
 
-def get_train_edges_attr(
+def apply_causal_filter(
+    edge_index: torch.Tensor,
+    edge_attr: torch.Tensor,
+    pos_temporal: torch.Tensor
+):
+    t = pos_temporal.squeeze()
+    src, tgt = edge_index
+    keep = t[src] <= t[tgt]
+    return edge_index[:, keep], edge_attr[keep, :]
+
+
+def _build_group_anchor_times(pos_temporal: torch.Tensor, group_ids):
+    n = pos_temporal.numel()
+    pos_t = pos_temporal.view(-1).tolist()
+    if group_ids is None:
+        return pos_t
+
+    earliest = {}
+    for i, gid in enumerate(group_ids):
+        if not gid:
+            continue
+        t = pos_t[i]
+        if gid not in earliest or t < earliest[gid]:
+            earliest[gid] = t
+
+    anchor = [0.0] * n
+    for i, gid in enumerate(group_ids):
+        anchor[i] = earliest[gid] if gid else pos_t[i]
+    return anchor
+
+
+def get_split_edges_attr(
     pos_temporal: torch.Tensor,
     edge_index: torch.Tensor,
     edge_attr: torch.Tensor,
-    cutoff_percent: float
+    train_cutoff_percent: float,
+    val_cutoff_percent: float,
+    group_ids=None
 ):
-    cutoff_value = torch.quantile(pos_temporal, cutoff_percent)
+    anchor = _build_group_anchor_times(pos_temporal, group_ids)
+    anchor_t = torch.tensor(anchor, dtype=pos_temporal.dtype).view(-1)
 
-    train_mask = pos_temporal < cutoff_value
-    test_mask = ~train_mask
-    train_mask = train_mask.squeeze()
-    test_mask = test_mask.squeeze()
+    train_cutoff_value = torch.quantile(anchor_t, train_cutoff_percent)
+    val_cutoff_value = torch.quantile(anchor_t, val_cutoff_percent)
+
+    train_mask = anchor_t < train_cutoff_value
+    val_mask = (anchor_t >= train_cutoff_value) & (anchor_t < val_cutoff_value)
+    test_mask = anchor_t >= val_cutoff_value
 
     row, col = edge_index
     is_train_edge = train_mask[row] & train_mask[col]
-    
+
+    trainval_mask = train_mask | val_mask
+    is_trainval_edge = trainval_mask[row] & trainval_mask[col]
+
     train_edge_index = edge_index[:, is_train_edge]
     train_edge_attr = edge_attr[is_train_edge, :]
+    trainval_edge_index = edge_index[:, is_trainval_edge]
+    trainval_edge_attr = edge_attr[is_trainval_edge, :]
 
-    return train_edge_index, train_edge_attr, train_mask, test_mask
+    return (
+        train_edge_index, train_edge_attr,
+        trainval_edge_index, trainval_edge_attr,
+        train_mask, val_mask, test_mask,
+    )
 
 def build_graph(
     graph_type: str,
@@ -70,7 +115,9 @@ def build_graph(
     pos_temporal: torch.Tensor,
     pos_combined: torch.Tensor,
     x: torch.Tensor,
-    y: torch.Tensor
+    y: torch.Tensor,
+    causal: bool = True,
+    group_ids=None
 ):
     edge_index = None
     edge_attr = None
@@ -117,21 +164,33 @@ def build_graph(
             f"Invalid graph_type provided: {graph_type}. "
             f"Supported types: 'spatial', 'temporal', 'combined', 'multiplex'"
         )
-    
-    train_edge_index, train_edge_attr, train_mask, test_mask = get_train_edges_attr(
+
+    if causal:
+        edge_index, edge_attr = apply_causal_filter(edge_index, edge_attr, pos_temporal)
+
+    (
+        train_edge_index, train_edge_attr,
+        trainval_edge_index, trainval_edge_attr,
+        train_mask, val_mask, test_mask,
+    ) = get_split_edges_attr(
         pos_temporal,
         edge_index,
         edge_attr,
-        0.8
+        train_cutoff_percent=0.72,
+        val_cutoff_percent=0.80,
+        group_ids=group_ids,
     )
-        
+
     return Data(
         x=x,
         edge_index=edge_index,
         edge_attr=edge_attr,
         train_mask=train_mask,
+        val_mask=val_mask,
         test_mask=test_mask,
         train_edge_index=train_edge_index,
         train_edge_attr=train_edge_attr,
+        trainval_edge_index=trainval_edge_index,
+        trainval_edge_attr=trainval_edge_attr,
         y=y
     )

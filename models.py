@@ -3,6 +3,7 @@ from torch_geometric.nn import (
     GCNConv,
     GATv2Conv,
     TransformerConv,
+    RGCNConv,
     Linear
 )
 
@@ -36,9 +37,9 @@ class GAT_Model(torch.nn.Module):
     
     def forward(self, x: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor = None):
         x = self.conv1(x, edge_index, edge_attr).relu()
-        x = torch.nn.functional.dropout(x, p=0.2)
+        x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
         x = self.conv2(x, edge_index, edge_attr).relu()
-        x = torch.nn.functional.dropout(x, p=0.2)
+        x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
         x = self.classifier(x)
 
         return x
@@ -49,12 +50,12 @@ class Transformer_Model(torch.nn.Module):
         self.conv1 = TransformerConv(in_channels=input_dim, out_channels=hidden_dim, edge_dim=edge_dim)
         self.conv2 = TransformerConv(in_channels=hidden_dim, out_channels=hidden_dim, edge_dim=edge_dim)
         self.classifier = Linear(in_channels=hidden_dim, out_channels=2)
-    
+
     def forward(self, x:torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor = None):
         x = self.conv1(x, edge_index, edge_attr).relu()
-        x = torch.nn.functional.dropout(x, p=0.2)
+        x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
         x = self.conv2(x, edge_index, edge_attr).relu()
-        x = torch.nn.functional.dropout(x, p=0.2)
+        x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
         x = self.classifier(x)
 
         return x
@@ -68,9 +69,9 @@ class BaselineMLP(torch.nn.Module):
 
     def forward(self, x):
         x = self.layer1(x).relu()
-        x = torch.nn.functional.dropout(x, p=0.2)
+        x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
         x = self.layer2(x).relu()
-        x = torch.nn.functional.dropout(x, p=0.2)
+        x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
         return self.classifier(x)
     
 class GoldenTransformer(torch.nn.Module):
@@ -88,5 +89,20 @@ class GoldenTransformer(torch.nn.Module):
 
         x = self.conv2(x, edge_index, edge_attr).relu()
         x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
-        
+
+        return self.classifier(x)
+
+class RGCN_Model(torch.nn.Module):
+    def __init__(self, input_dim: int, hidden_dim: int, num_relations: int = 2):
+        super().__init__()
+        self.conv1 = RGCNConv(in_channels=input_dim, out_channels=hidden_dim, num_relations=num_relations)
+        self.conv2 = RGCNConv(in_channels=hidden_dim, out_channels=hidden_dim, num_relations=num_relations)
+        self.classifier = Linear(in_channels=hidden_dim, out_channels=2)
+
+    def forward(self, x: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor = None):
+        edge_type = edge_attr[:, -1].long()
+        x = self.conv1(x, edge_index, edge_type).relu()
+        x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
+        x = self.conv2(x, edge_index, edge_type).relu()
+        x = torch.nn.functional.dropout(x, p=0.2, training=self.training)
         return self.classifier(x)

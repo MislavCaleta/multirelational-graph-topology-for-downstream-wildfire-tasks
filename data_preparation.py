@@ -4,9 +4,10 @@ import numpy as np
 
 def prepare_dataset(
   path: str,
-  split_ratio: float = 0.8    
-) -> tuple[torch.Tensor]:
-    
+  split_ratio: float = 0.8,
+  return_group_ids: bool = False
+) -> tuple:
+
     df = pd.read_csv(path)
 
     # standardize all human/natural labels to be the same
@@ -25,7 +26,7 @@ def prepare_dataset(
     y = torch.tensor(df["cause_human_or_natural"].map({"Human": 1, "Natural": 0}).values, dtype=torch.long)
     log_area = np.log1p(df["poly_area_ha"].values)
     x = torch.tensor(log_area, dtype=torch.float).unsqueeze(1)
-    
+
     pos_spatial = torch.tensor(df[["lat", "lon"]].values, dtype=torch.float)
     df["days"] = (df["date"] - df["date"].min()).dt.days
     pos_temporal = torch.tensor(df["days"].values, dtype=torch.float).unsqueeze(-1)
@@ -43,6 +44,11 @@ def prepare_dataset(
     pos_temporal = (pos_temporal - mu_t) / (sigma_t + 1e-8)
 
     pos_combined = torch.cat([pos_spatial, pos_temporal], dim=1)
+
+    if return_group_ids:
+        raw = df["mtbs_ID"].fillna("").astype(str).str.strip()
+        group_ids = [g if g and g not in ("N/A", "nan", "NaN", "None") else "" for g in raw]
+        return x, y, pos_combined, pos_spatial, pos_temporal, group_ids
 
     return x, y, pos_combined, pos_spatial, pos_temporal
 
