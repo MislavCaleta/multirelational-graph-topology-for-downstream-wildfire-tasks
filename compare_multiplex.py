@@ -5,8 +5,8 @@ import torch
 
 from data_preparation import prepare_dataset, get_loss_weights
 from graph_construction import build_graph
-from models import GCN_Model, GAT_Model, Transformer_Model, RGCN_Model
-from train_and_evaluate import train_and_evaluate
+from models import GCN_Model, GAT_Model, Transformer_Model, RGCN_Model, BaselineMLP
+from train_and_evaluate import train_and_evaluate, train_mlp
 from resources import DATA_PATH
 
 
@@ -15,6 +15,7 @@ NEIGHBORS_LIST = [5, 7, 9]
 HIDDEN_DIM = 64
 MAX_EPOCHS = 200
 PATIENCE = 30
+MLP_EPOCHS = 500
 SEASONAL_FEATURES = True
 
 
@@ -22,6 +23,39 @@ def set_seed(seed):
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+
+
+def run_mlp_baseline(x, y, train_mask, val_mask, test_mask, weights, device):
+    input_dim = x.size(-1)
+    f1s, accs = [], []
+    n_params = sum(p.numel() for p in BaselineMLP(input_dim, HIDDEN_DIM).parameters())
+    t0 = time.time()
+    for seed in SEEDS:
+        set_seed(seed)
+        model = BaselineMLP(input_dim=input_dim, hidden_dim=HIDDEN_DIM)
+        f1, acc, _ = train_mlp(
+            model=model,
+            features=x,
+            targets=y,
+            train_mask=train_mask,
+            val_mask=val_mask,
+            test_mask=test_mask,
+            device=device,
+            class_weights=weights,
+            epochs=MLP_EPOCHS,
+        )
+        f1s.append(f1)
+        accs.append(acc)
+    dt = time.time() - t0
+    return {
+        "f1_runs": f1s,
+        "f1_mean": statistics.mean(f1s),
+        "f1_std": statistics.stdev(f1s),
+        "acc_mean": statistics.mean(accs),
+        "acc_std": statistics.stdev(accs),
+        "params": n_params,
+        "total_time": dt,
+    }
 
 
 def run_one_k(k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weights, device):
@@ -102,6 +136,22 @@ def main():
             k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weights, device
         )
 
+    ref_data = build_graph(
+        graph_type="multiplex",
+        neighbors=NEIGHBORS_LIST[0],
+        pos_spatial=pos_spatial,
+        pos_temporal=pos_temporal,
+        pos_combined=pos_combined,
+        x=x,
+        y=y,
+        group_ids=group_ids,
+    )
+    print("\n--- BaselineMLP (no graph, same masks) ---")
+    mlp_summary = run_mlp_baseline(
+        x, y, ref_data.train_mask, ref_data.val_mask, ref_data.test_mask, weights, device
+    )
+    print(f"  BaselineMLP        F1 mean={mlp_summary['f1_mean']:.4f} std={mlp_summary['f1_std']:.4f}  ({mlp_summary['total_time']:.1f}s)")
+
     print("\n\n=== Final summary: multiplex, all k, mean ± std over {} seeds ===".format(len(SEEDS)))
     print(f"{'Model':<18s}", end="")
     for k in NEIGHBORS_LIST:
@@ -113,6 +163,7 @@ def main():
             s = all_summaries[k][name]
             print(f"   {s['f1_mean']:.4f} ± {s['f1_std']:.4f}    ", end="")
         print()
+    print(f"\n{'BaselineMLP (no graph)':<24s} F1 = {mlp_summary['f1_mean']:.4f} ± {mlp_summary['f1_std']:.4f}  Acc = {mlp_summary['acc_mean']:.4f} ± {mlp_summary['acc_std']:.4f}")
 
 
 if __name__ == "__main__":
