@@ -4,9 +4,10 @@ import numpy as np
 
 def prepare_dataset(
   path: str,
-  split_ratio: float = 0.8    
+  split_ratio: float = 0.8,
+  seasonal_features: bool = False
 ) -> tuple[torch.Tensor]:
-    
+
     df = pd.read_csv(path)
 
     # standardize all human/natural labels to be the same
@@ -25,7 +26,14 @@ def prepare_dataset(
     y = torch.tensor(df["cause_human_or_natural"].map({"Human": 1, "Natural": 0}).values, dtype=torch.long)
     log_area = np.log1p(df["poly_area_ha"].values)
     x = torch.tensor(log_area, dtype=torch.float).unsqueeze(1)
-    
+
+    if seasonal_features:
+        doy = df["date"].dt.dayofyear.values
+        angle = 2.0 * np.pi * doy / 365.25
+        sin_doy = torch.tensor(np.sin(angle), dtype=torch.float).unsqueeze(1)
+        cos_doy = torch.tensor(np.cos(angle), dtype=torch.float).unsqueeze(1)
+        x = torch.cat([x, sin_doy, cos_doy], dim=1)
+
     pos_spatial = torch.tensor(df[["lat", "lon"]].values, dtype=torch.float)
     df["days"] = (df["date"] - df["date"].min()).dt.days
     pos_temporal = torch.tensor(df["days"].values, dtype=torch.float).unsqueeze(-1)
