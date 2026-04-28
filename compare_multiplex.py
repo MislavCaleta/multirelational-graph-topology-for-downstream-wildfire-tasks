@@ -15,6 +15,7 @@ NEIGHBORS_LIST = [5, 7, 9]
 HIDDEN_DIM = 64
 MAX_EPOCHS = 200
 PATIENCE = 30
+SEASONAL_FEATURES = True
 
 
 def set_seed(seed):
@@ -35,6 +36,7 @@ def run_one_k(k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weigh
         group_ids=group_ids,
     )
     edge_dim = data.edge_attr.size(-1)
+    input_dim = x.size(-1)
     n_train = data.train_mask.sum().item()
     n_val = data.val_mask.sum().item()
     n_test = data.test_mask.sum().item()
@@ -42,10 +44,10 @@ def run_one_k(k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weigh
     print(f"     train: {n_train}, val: {n_val}, test: {n_test}")
 
     configs = [
-        ("GCN", lambda: GCN_Model(input_dim=1, hidden_dim=HIDDEN_DIM)),
-        ("GAT", lambda: GAT_Model(input_dim=1, hidden_dim=HIDDEN_DIM, edge_dim=edge_dim)),
-        ("TransformerConv", lambda: Transformer_Model(input_dim=1, hidden_dim=HIDDEN_DIM, edge_dim=edge_dim)),
-        ("RGCN", lambda: RGCN_Model(input_dim=1, hidden_dim=HIDDEN_DIM, num_relations=2)),
+        ("GCN", lambda: GCN_Model(input_dim=input_dim, hidden_dim=HIDDEN_DIM)),
+        ("GAT", lambda: GAT_Model(input_dim=input_dim, hidden_dim=HIDDEN_DIM, edge_dim=edge_dim)),
+        ("TransformerConv", lambda: Transformer_Model(input_dim=input_dim, hidden_dim=HIDDEN_DIM, edge_dim=edge_dim)),
+        ("RGCN", lambda: RGCN_Model(input_dim=input_dim, hidden_dim=HIDDEN_DIM, num_relations=2)),
     ]
 
     summary = {}
@@ -86,10 +88,11 @@ def main():
 
     set_seed(SEEDS[0])
     x, y, pos_combined, pos_spatial, pos_temporal, group_ids = prepare_dataset(
-        DATA_PATH, return_group_ids=True
+        DATA_PATH, seasonal_features=SEASONAL_FEATURES, return_group_ids=True
     )
     weights = get_loss_weights(y)
-    print(f"\nNodes: {x.size(0)}  Seeds: {SEEDS}  k values: {NEIGHBORS_LIST}")
+    print(f"\nNodes: {x.size(0)}  Node feature dim: {x.size(-1)}  Seeds: {SEEDS}  k values: {NEIGHBORS_LIST}")
+    print(f"Seasonal features: {SEASONAL_FEATURES}")
     n_grouped_rows = sum(1 for g in group_ids if g)
     print(f"Rows with non-null mtbs_ID: {n_grouped_rows}")
 
