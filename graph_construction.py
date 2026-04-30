@@ -3,9 +3,6 @@ from sklearn.neighbors import NearestNeighbors
 import numpy as np
 from torch_geometric.data import Data
 
-from resources import DATA_PATH
-from data_preparation import prepare_dataset
-
 def create_knn_edge_index(
     pos_tensor: torch.Tensor,
     k: int
@@ -133,7 +130,7 @@ def build_graph(
         edge_attr_spatial = compute_edge_attributes(edge_index, pos_spatial, pos_temporal)
         edge_attr_temporal = compute_edge_attributes(edge_index, pos_temporal, pos_temporal)
         edge_attr = torch.cat([edge_attr_spatial[:, 0:1], edge_attr_temporal[:, 0:1], edge_attr_spatial[:, 1:2]], dim=1)
-    elif graph_type == "multiplex":
+    elif graph_type == "multirelational":
         k_s = neighbors // 2
         k_t = neighbors - k_s
 
@@ -162,7 +159,7 @@ def build_graph(
     if edge_index is None:
         raise ValueError(
             f"Invalid graph_type provided: {graph_type}. "
-            f"Supported types: 'spatial', 'temporal', 'combined', 'multiplex'"
+            f"Supported types: 'spatial', 'temporal', 'combined', 'multirelational'"
         )
 
     if causal:
