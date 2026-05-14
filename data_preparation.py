@@ -6,7 +6,8 @@ def prepare_dataset(
   path: str,
   split_ratio: float = 0.8,
   seasonal_features: bool = False,
-  return_group_ids: bool = False
+  return_group_ids: bool = False,
+  return_raw_spatial: bool = False
 ) -> tuple:
 
     df = pd.read_csv(path)
@@ -36,6 +37,9 @@ def prepare_dataset(
         x = torch.cat([x, sin_doy, cos_doy], dim=1)
 
     pos_spatial = torch.tensor(df[["lat", "lon"]].values, dtype=torch.float)
+    # raw (un-standardized) lat/lon in degrees, kept for haversine distance;
+    # pos_spatial itself is standardized below because it doubles as a node feature
+    pos_spatial_raw = pos_spatial.clone()
     df["days"] = (df["date"] - df["date"].min()).dt.days
     pos_temporal = torch.tensor(df["days"].values, dtype=torch.float).unsqueeze(-1)
 
@@ -53,12 +57,17 @@ def prepare_dataset(
 
     pos_combined = torch.cat([pos_spatial, pos_temporal], dim=1)
 
+    result = [x, y, pos_combined, pos_spatial, pos_temporal]
+
     if return_group_ids:
         raw = df["mtbs_ID"].fillna("").astype(str).str.strip()
         group_ids = [g if g and g not in ("N/A", "nan", "NaN", "None") else "" for g in raw]
-        return x, y, pos_combined, pos_spatial, pos_temporal, group_ids
+        result.append(group_ids)
 
-    return x, y, pos_combined, pos_spatial, pos_temporal
+    if return_raw_spatial:
+        result.append(pos_spatial_raw)
+
+    return tuple(result)
 
 def get_loss_weights(
     y: torch.Tensor,
