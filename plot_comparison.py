@@ -6,7 +6,9 @@ import numpy as np
 
 CSV_PATH = Path("outputs/tables/clean_eval_topology_sweep.csv")
 OUT_PATH = Path("outputs/figures/clean_eval_topology_comparison.png")
-TOPOLOGIES = ["spatial", "temporal", "combined", "multiplex"]
+# which distance metric to plot from the sweep CSV ("euclidean" or "haversine")
+DISTANCE_METRIC = "euclidean"
+TOPOLOGIES = ["spatial", "temporal", "combined", "multirelational"]
 MODELS = ["GCN", "GAT", "TransformerConv", "RGCN"]
 K_VALUES = [5, 7, 9]
 COLORS = {
@@ -25,6 +27,9 @@ def load():
     for r in rows:
         if r["model"] == "BaselineMLP":
             mlp = (float(r["f1_mean"]), float(r["f1_std"]))
+            continue
+        # older CSVs have no distance_metric column -> treat them as euclidean
+        if r.get("distance_metric", "euclidean") != DISTANCE_METRIC:
             continue
         grid[r["topology"]][int(r["k"])][r["model"]] = (float(r["f1_mean"]), float(r["f1_std"]))
     return grid, mlp
@@ -70,7 +75,7 @@ def main():
     fig.tight_layout(rect=[0, 0.03, 1, 1])
     fig.text(
         0.5, 0.005,
-        "RGCN requires multi-relational edges and is therefore reported only for multiplex.",
+        "RGCN requires multi-relational edges and is therefore reported only for multirelational.",
         ha="center", fontsize=8, style="italic", color="#444444"
     )
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)

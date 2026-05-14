@@ -12,6 +12,7 @@ from resources import DATA_PATH
 
 SEEDS = [42, 7, 1234, 2025, 88]
 NEIGHBORS_LIST = [5, 7, 9]
+DISTANCE_METRICS = ["euclidean", "haversine"]
 HIDDEN_DIM = 64
 MAX_EPOCHS = 200
 PATIENCE = 30
@@ -58,9 +59,10 @@ def run_mlp_baseline(x, y, train_mask, val_mask, test_mask, weights, device):
     }
 
 
-def run_one_k(k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weights, device):
+def run_one_k(k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weights, device,
+              distance_metric="euclidean", pos_spatial_raw=None):
     data = build_graph(
-        graph_type="multiplex",
+        graph_type="multirelational",
         neighbors=k,
         pos_spatial=pos_spatial,
         pos_temporal=pos_temporal,
@@ -68,13 +70,15 @@ def run_one_k(k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weigh
         x=x,
         y=y,
         group_ids=group_ids,
+        distance_metric=distance_metric,
+        pos_spatial_raw=pos_spatial_raw,
     )
     edge_dim = data.edge_attr.size(-1)
     input_dim = x.size(-1)
     n_train = data.train_mask.sum().item()
     n_val = data.val_mask.sum().item()
     n_test = data.test_mask.sum().item()
-    print(f"\n--- k={k}  Edges: {data.num_edges}, edge_attr dim: {edge_dim} ---")
+    print(f"\n--- metric={distance_metric}, k={k}  Edges: {data.num_edges}, edge_attr dim: {edge_dim} ---")
     print(f"     train: {n_train}, val: {n_val}, test: {n_test}")
 
     configs = [
@@ -121,23 +125,26 @@ def main():
     device = torch.device("cpu")
 
     set_seed(SEEDS[0])
-    x, y, pos_combined, pos_spatial, pos_temporal, group_ids = prepare_dataset(
-        DATA_PATH, seasonal_features=SEASONAL_FEATURES, return_group_ids=True
+    x, y, pos_combined, pos_spatial, pos_temporal, group_ids, pos_spatial_raw = prepare_dataset(
+        DATA_PATH, seasonal_features=SEASONAL_FEATURES, return_group_ids=True, return_raw_spatial=True
     )
     weights = get_loss_weights(y)
     print(f"\nNodes: {x.size(0)}  Node feature dim: {x.size(-1)}  Seeds: {SEEDS}  k values: {NEIGHBORS_LIST}")
-    print(f"Seasonal features: {SEASONAL_FEATURES}")
+    print(f"Seasonal features: {SEASONAL_FEATURES}  Distance metrics: {DISTANCE_METRICS}")
     n_grouped_rows = sum(1 for g in group_ids if g)
     print(f"Rows with non-null mtbs_ID: {n_grouped_rows}")
 
-    all_summaries = {}
-    for k in NEIGHBORS_LIST:
-        all_summaries[k] = run_one_k(
-            k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weights, device
-        )
+    # all_summaries[distance_metric][k][model]
+    all_summaries = {dm: {} for dm in DISTANCE_METRICS}
+    for distance_metric in DISTANCE_METRICS:
+        for k in NEIGHBORS_LIST:
+            all_summaries[distance_metric][k] = run_one_k(
+                k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weights, device,
+                distance_metric=distance_metric, pos_spatial_raw=pos_spatial_raw,
+            )
 
     ref_data = build_graph(
-        graph_type="multiplex",
+        graph_type="multirelational",
         neighbors=NEIGHBORS_LIST[0],
         pos_spatial=pos_spatial,
         pos_temporal=pos_temporal,
@@ -152,17 +159,19 @@ def main():
     )
     print(f"  BaselineMLP        F1 mean={mlp_summary['f1_mean']:.4f} std={mlp_summary['f1_std']:.4f}  ({mlp_summary['total_time']:.1f}s)")
 
-    print("\n\n=== Final summary: multiplex, all k, mean ± std over {} seeds ===".format(len(SEEDS)))
-    print(f"{'Model':<18s}", end="")
-    for k in NEIGHBORS_LIST:
-        print(f"  k={k:<2d} F1 mean ± std    ", end="")
-    print()
-    for name in ["GCN", "GAT", "TransformerConv", "RGCN"]:
-        print(f"{name:<18s}", end="")
+    print("\n\n=== Final summary: multirelational, all k, mean ± std over {} seeds ===".format(len(SEEDS)))
+    for distance_metric in DISTANCE_METRICS:
+        print(f"\n[distance_metric = {distance_metric}]")
+        print(f"{'Model':<18s}", end="")
         for k in NEIGHBORS_LIST:
-            s = all_summaries[k][name]
-            print(f"   {s['f1_mean']:.4f} ± {s['f1_std']:.4f}    ", end="")
+            print(f"  k={k:<2d} F1 mean ± std    ", end="")
         print()
+        for name in ["GCN", "GAT", "TransformerConv", "RGCN"]:
+            print(f"{name:<18s}", end="")
+            for k in NEIGHBORS_LIST:
+                s = all_summaries[distance_metric][k][name]
+                print(f"   {s['f1_mean']:.4f} ± {s['f1_std']:.4f}    ", end="")
+            print()
     print(f"\n{'BaselineMLP (no graph)':<24s} F1 = {mlp_summary['f1_mean']:.4f} ± {mlp_summary['f1_std']:.4f}  Acc = {mlp_summary['acc_mean']:.4f} ± {mlp_summary['acc_std']:.4f}")
 
 
