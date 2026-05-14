@@ -15,7 +15,7 @@ from resources import DATA_PATH
 
 SEEDS = [42, 7, 1234, 2025, 88]
 NEIGHBORS_LIST = [5, 7, 9]
-TOPOLOGIES = ["spatial", "temporal", "combined", "multiplex"]
+TOPOLOGIES = ["spatial", "temporal", "combined", "multirelational"]
 DISTANCE_METRICS = ["euclidean", "haversine"]
 HIDDEN_DIM = 64
 MAX_EPOCHS = 200
@@ -37,7 +37,7 @@ def gnn_configs(topology, input_dim, edge_dim):
         ("GAT", lambda: GAT_Model(input_dim=input_dim, hidden_dim=HIDDEN_DIM, edge_dim=edge_dim)),
         ("TransformerConv", lambda: Transformer_Model(input_dim=input_dim, hidden_dim=HIDDEN_DIM, edge_dim=edge_dim)),
     ]
-    if topology == "multiplex":
+    if topology == "multirelational":
         base.append(("RGCN", lambda: RGCN_Model(input_dim=input_dim, hidden_dim=HIDDEN_DIM, num_relations=2)))
     return base
 
@@ -117,7 +117,7 @@ def main():
     # masks/weights come from the temporal (group-aware) split and do not depend
     # on the distance metric, so build the reference graph once.
     ref_data = build_graph(
-        graph_type="multiplex",
+        graph_type="multirelational",
         neighbors=NEIGHBORS_LIST[0],
         pos_spatial=pos_spatial,
         pos_temporal=pos_temporal,

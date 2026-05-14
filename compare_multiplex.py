@@ -62,7 +62,7 @@ def run_mlp_baseline(x, y, train_mask, val_mask, test_mask, weights, device):
 def run_one_k(k, x, y, pos_combined, pos_spatial, pos_temporal, group_ids, weights, device,
               distance_metric="euclidean", pos_spatial_raw=None):
     data = build_graph(
-        graph_type="multiplex",
+        graph_type="multirelational",
         neighbors=k,
         pos_spatial=pos_spatial,
         pos_temporal=pos_temporal,
@@ -144,7 +144,7 @@ def main():
             )
 
     ref_data = build_graph(
-        graph_type="multiplex",
+        graph_type="multirelational",
         neighbors=NEIGHBORS_LIST[0],
         pos_spatial=pos_spatial,
         pos_temporal=pos_temporal,
@@ -159,7 +159,7 @@ def main():
     )
     print(f"  BaselineMLP        F1 mean={mlp_summary['f1_mean']:.4f} std={mlp_summary['f1_std']:.4f}  ({mlp_summary['total_time']:.1f}s)")
 
-    print("\n\n=== Final summary: multiplex, all k, mean ± std over {} seeds ===".format(len(SEEDS)))
+    print("\n\n=== Final summary: multirelational, all k, mean ± std over {} seeds ===".format(len(SEEDS)))
     for distance_metric in DISTANCE_METRICS:
         print(f"\n[distance_metric = {distance_metric}]")
         print(f"{'Model':<18s}", end="")

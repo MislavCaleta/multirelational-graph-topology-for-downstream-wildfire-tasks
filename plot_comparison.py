@@ -8,7 +8,7 @@ CSV_PATH = Path("outputs/tables/clean_eval_topology_sweep.csv")
 OUT_PATH = Path("outputs/figures/clean_eval_topology_comparison.png")
 # which distance metric to plot from the sweep CSV ("euclidean" or "haversine")
 DISTANCE_METRIC = "euclidean"
-TOPOLOGIES = ["spatial", "temporal", "combined", "multiplex"]
+TOPOLOGIES = ["spatial", "temporal", "combined", "multirelational"]
 MODELS = ["GCN", "GAT", "TransformerConv", "RGCN"]
 K_VALUES = [5, 7, 9]
 COLORS = {
@@ -75,7 +75,7 @@ def main():
     fig.tight_layout(rect=[0, 0.03, 1, 1])
     fig.text(
         0.5, 0.005,
-        "RGCN requires multi-relational edges and is therefore reported only for multiplex.",
+        "RGCN requires multi-relational edges and is therefore reported only for multirelational.",
         ha="center", fontsize=8, style="italic", color="#444444"
     )
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
