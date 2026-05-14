@@ -39,6 +39,9 @@ def train_and_evaluate(
         loss_value = criterion(logits[data.train_mask], data.y[data.train_mask])
         optimizer.zero_grad()
         loss_value.backward()
+        # clip gradients to prevent the occasional non-converging run
+        # (e.g. high-head TransformerConv collapsing to a constant prediction)
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         optimizer.step()
 
         model.eval()

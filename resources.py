@@ -6,3 +6,4 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 OUTPUT_PATH = "./outputs"
 OUTPUT_TABLES_PATH = os.path.join(OUTPUT_PATH, "tables")
 OUTPUT_FIGURES_PATH = os.path.join(OUTPUT_PATH, "figures")
+MODELS_PATH = os.path.join(OUTPUT_PATH, "models")
