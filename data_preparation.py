@@ -5,8 +5,9 @@ import numpy as np
 def prepare_dataset(
   path: str,
   split_ratio: float = 0.8,
-  seasonal_features: bool = False
-) -> tuple[torch.Tensor]:
+  seasonal_features: bool = False,
+  return_group_ids: bool = False
+) -> tuple:
 
     df = pd.read_csv(path)
 
@@ -52,20 +53,28 @@ def prepare_dataset(
 
     pos_combined = torch.cat([pos_spatial, pos_temporal], dim=1)
 
+    if return_group_ids:
+        raw = df["mtbs_ID"].fillna("").astype(str).str.strip()
+        group_ids = [g if g and g not in ("N/A", "nan", "NaN", "None") else "" for g in raw]
+        return x, y, pos_combined, pos_spatial, pos_temporal, group_ids
+
     return x, y, pos_combined, pos_spatial, pos_temporal
 
 def get_loss_weights(
-    y: torch.Tensor
-) -> tuple[float]:
-    natural = (y == 0).sum().item()
-    human_made = (y == 1).sum().item()
-    total = y.size(0)
+    y: torch.Tensor,
+    mask: torch.Tensor = None
+) -> torch.Tensor:
+    y_used = y[mask] if mask is not None else y
+    natural = (y_used == 0).sum().item()
+    human_made = (y_used == 1).sum().item()
+    total = y_used.size(0)
 
     natural_percent = natural / total * 100
     human_percent = 100 - natural_percent
 
-    print(f"There are {natural} natural fires ({natural_percent:.2f} %)")
-    print(f"There are {human_made} human made fires ({human_percent:.2f} %)")
+    label = "train" if mask is not None else "all"
+    print(f"There are {natural} natural fires ({natural_percent:.2f} %) [{label}]")
+    print(f"There are {human_made} human made fires ({human_percent:.2f} %) [{label}]")
 
     weight_human = total / (2 * human_made)
     weight_natural = total / (2 * natural)

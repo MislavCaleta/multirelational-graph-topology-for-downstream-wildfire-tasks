@@ -50,19 +50,43 @@ def apply_causal_filter(
     return edge_index[:, keep], edge_attr[keep, :]
 
 
+def _build_group_anchor_times(pos_temporal: torch.Tensor, group_ids):
+    n = pos_temporal.numel()
+    pos_t = pos_temporal.view(-1).tolist()
+    if group_ids is None:
+        return pos_t
+
+    earliest = {}
+    for i, gid in enumerate(group_ids):
+        if not gid:
+            continue
+        t = pos_t[i]
+        if gid not in earliest or t < earliest[gid]:
+            earliest[gid] = t
+
+    anchor = [0.0] * n
+    for i, gid in enumerate(group_ids):
+        anchor[i] = earliest[gid] if gid else pos_t[i]
+    return anchor
+
+
 def get_split_edges_attr(
     pos_temporal: torch.Tensor,
     edge_index: torch.Tensor,
     edge_attr: torch.Tensor,
     train_cutoff_percent: float,
-    val_cutoff_percent: float
+    val_cutoff_percent: float,
+    group_ids=None
 ):
-    train_cutoff_value = torch.quantile(pos_temporal, train_cutoff_percent)
-    val_cutoff_value = torch.quantile(pos_temporal, val_cutoff_percent)
+    anchor = _build_group_anchor_times(pos_temporal, group_ids)
+    anchor_t = torch.tensor(anchor, dtype=pos_temporal.dtype).view(-1)
 
-    train_mask = (pos_temporal < train_cutoff_value).squeeze()
-    val_mask = ((pos_temporal >= train_cutoff_value) & (pos_temporal < val_cutoff_value)).squeeze()
-    test_mask = (pos_temporal >= val_cutoff_value).squeeze()
+    train_cutoff_value = torch.quantile(anchor_t, train_cutoff_percent)
+    val_cutoff_value = torch.quantile(anchor_t, val_cutoff_percent)
+
+    train_mask = anchor_t < train_cutoff_value
+    val_mask = (anchor_t >= train_cutoff_value) & (anchor_t < val_cutoff_value)
+    test_mask = anchor_t >= val_cutoff_value
 
     row, col = edge_index
     is_train_edge = train_mask[row] & train_mask[col]
@@ -89,7 +113,8 @@ def build_graph(
     pos_combined: torch.Tensor,
     x: torch.Tensor,
     y: torch.Tensor,
-    causal: bool = True
+    causal: bool = True,
+    group_ids=None
 ):
     edge_index = None
     edge_attr = None
@@ -150,6 +175,7 @@ def build_graph(
         edge_attr,
         train_cutoff_percent=0.72,
         val_cutoff_percent=0.80,
+        group_ids=group_ids,
     )
 
     return Data(
