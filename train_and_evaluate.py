@@ -1,5 +1,6 @@
 import copy
 
+import numpy as np
 import torch
 import torch_geometric
 from sklearn.metrics import f1_score
@@ -122,3 +123,69 @@ def train_mlp(
         test_f1, test_acc = _macro_f1_and_acc(out, targets, test_mask)
 
     return test_f1, test_acc, model
+
+
+def train_logistic_regression(
+    features,
+    targets,
+    train_mask,
+    test_mask,
+    random_state: int = 42,
+    max_iter: int = 1000,
+    class_weight: str = 'balanced',
+    bootstrap: bool = True,
+):
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.metrics import accuracy_score
+    from sklearn.utils import resample
+
+    x_np = features.detach().cpu().numpy() if isinstance(features, torch.Tensor) else np.asarray(features)
+    y_np = targets.detach().cpu().numpy() if isinstance(targets, torch.Tensor) else np.asarray(targets)
+    train_idx = train_mask.detach().cpu().numpy() if isinstance(train_mask, torch.Tensor) else np.asarray(train_mask)
+    test_idx = test_mask.detach().cpu().numpy() if isinstance(test_mask, torch.Tensor) else np.asarray(test_mask)
+
+    x_train, y_train = x_np[train_idx], y_np[train_idx]
+    if bootstrap:
+        x_train, y_train = resample(x_train, y_train, replace=True, random_state=random_state)
+
+    clf = LogisticRegression(class_weight=class_weight, max_iter=max_iter, random_state=random_state)
+    clf.fit(x_train, y_train)
+    preds = clf.predict(x_np[test_idx])
+    y_test = y_np[test_idx]
+
+    f1 = f1_score(y_test, preds, average='macro')
+    acc = accuracy_score(y_test, preds)
+    return f1, acc, clf
+
+
+def train_random_forest(
+    features,
+    targets,
+    train_mask,
+    test_mask,
+    n_estimators: int = 100,
+    random_state: int = 42,
+    class_weight: str = 'balanced',
+    n_jobs: int = -1,
+):
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.metrics import accuracy_score
+
+    x_np = features.detach().cpu().numpy() if isinstance(features, torch.Tensor) else np.asarray(features)
+    y_np = targets.detach().cpu().numpy() if isinstance(targets, torch.Tensor) else np.asarray(targets)
+    train_idx = train_mask.detach().cpu().numpy() if isinstance(train_mask, torch.Tensor) else np.asarray(train_mask)
+    test_idx = test_mask.detach().cpu().numpy() if isinstance(test_mask, torch.Tensor) else np.asarray(test_mask)
+
+    clf = RandomForestClassifier(
+        n_estimators=n_estimators,
+        class_weight=class_weight,
+        random_state=random_state,
+        n_jobs=n_jobs,
+    )
+    clf.fit(x_np[train_idx], y_np[train_idx])
+    preds = clf.predict(x_np[test_idx])
+    y_test = y_np[test_idx]
+
+    f1 = f1_score(y_test, preds, average='macro')
+    acc = accuracy_score(y_test, preds)
+    return f1, acc, clf
