@@ -189,3 +189,51 @@ def train_random_forest(
     f1 = f1_score(y_test, preds, average='macro')
     acc = accuracy_score(y_test, preds)
     return f1, acc, clf
+
+
+def train_hybrid_gnn_rf(
+    data,
+    device,
+    class_weights,
+    hidden_dim: int = 16,
+    num_heads: int = 8,
+    rf_features=None,
+    mode: str = 'blend',
+    gnn_weight: float = 0.5,
+    random_state: int = 42,
+    max_epochs: int = 500,
+    patience: int = 30,
+    trained_gnn=None,
+):
+    from models import HybridTransformerRF
+    from sklearn.metrics import accuracy_score
+
+    input_dim = data.x.size(1)
+    edge_dim = data.edge_attr.size(1)
+
+    model = HybridTransformerRF(
+        input_dim=input_dim,
+        hidden_dim=hidden_dim,
+        edge_dim=edge_dim,
+        num_heads=num_heads,
+        mode=mode,
+        gnn_weight=gnn_weight,
+        random_state=random_state,
+    )
+
+    if trained_gnn is not None:
+        model.gnn = trained_gnn
+    else:
+        model.fit_gnn(data, device, class_weights, max_epochs=max_epochs, patience=patience)
+
+    rf_feat_np = rf_features.detach().cpu().numpy() if isinstance(rf_features, torch.Tensor) else rf_features
+    model.fit_rf(data, rf_features=rf_feat_np)
+
+    test_mask = data.test_mask
+    preds = model.predict(data, mask=test_mask, rf_features=rf_feat_np)
+    y_test = data.y[test_mask].detach().cpu().numpy()
+
+    test_f1 = f1_score(y_test, preds, average='macro')
+    test_acc = accuracy_score(y_test, preds)
+
+    return test_f1, test_acc, model
