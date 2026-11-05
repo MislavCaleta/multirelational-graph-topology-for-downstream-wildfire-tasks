@@ -35,7 +35,7 @@ def create_knn_edge_index(
     target_nodes = indices[:, 1:].flatten()
     edge_index = torch.tensor(np.stack(arrays=[source_nodes, target_nodes], axis=0), dtype=torch.long)
 
-    return edge_index
+    return edge_index.to(pos_tensor.device)
 
 def compute_edge_attributes(
     edge_index: torch.Tensor,
@@ -103,7 +103,9 @@ def get_split_edges_attr(
     group_ids=None
 ):
     anchor = _build_group_anchor_times(pos_temporal, group_ids)
-    anchor_t = torch.tensor(anchor, dtype=pos_temporal.dtype).view(-1)
+    anchor_t = torch.tensor(
+        anchor, dtype=pos_temporal.dtype, device=pos_temporal.device
+    ).view(-1)
 
     train_cutoff_value = torch.quantile(anchor_t, train_cutoff_percent)
     val_cutoff_value = torch.quantile(anchor_t, val_cutoff_percent)
@@ -182,9 +184,9 @@ def build_graph(
         #temporal information or spatial information by assigning edge type
         type_s = torch.full((edge_index_s.size(1), 1), 0)
         type_t = torch.full((edge_index_t.size(1), 1), 1)
-        edge_type = torch.cat([type_s, type_t], dim=0)
         edge_attr_spatial = compute_edge_attributes(edge_index, pos_spatial_geo, pos_temporal, metric=spatial_metric)
         edge_attr_temporal = compute_edge_attributes(edge_index, pos_temporal, pos_temporal)
+        edge_type = torch.cat([type_s, type_t], dim=0).to(edge_attr_spatial.device)
         edge_attr = torch.cat(
             [
                 edge_attr_spatial[:, 0:1],

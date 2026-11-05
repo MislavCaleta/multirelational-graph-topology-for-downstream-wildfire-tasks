@@ -1,0 +1,241 @@
+Category,Edge Type,Mean Importance
+Correctly Classified Human,Spatial,0.1170794665813446
+Correctly Classified Human,Temporal,0.11785823851823807
+Correctly Classified Human,Spatial,0.12855511903762817
+Correctly Classified Human,Temporal,0.12909647822380066
+Correctly Classified Human,Spatial,0.1435600370168686
+Correctly Classified Human,Temporal,0.15394632518291473
+Correctly Classified Human,Spatial,0.11516653746366501
+Correctly Classified Human,Temporal,0.11961705982685089
+Correctly Classified Human,Spatial,0.13256803154945374
+Correctly Classified Human,Temporal,0.16380441188812256
+Correctly Classified Human,Spatial,0.126742884516716
+Correctly Classified Human,Temporal,0.1462794840335846
+Correctly Classified Human,Spatial,0.12696179747581482
+Correctly Classified Human,Temporal,0.12851867079734802
+Correctly Classified Human,Spatial,0.13205812871456146
+Correctly Classified Human,Temporal,0.13184316456317902
+Correctly Classified Human,Spatial,0.148807093501091
+Correctly Classified Human,Temporal,0.1544293612241745
+Correctly Classified Human,Spatial,0.15731391310691833
+Correctly Classified Human,Temporal,0.14470291137695312
+Correctly Classified Human,Spatial,0.17889603972434998
+Correctly Classified Human,Temporal,0.12767601013183594
+Correctly Classified Human,Spatial,0.1332840770483017
+Correctly Classified Human,Temporal,0.1469501405954361
+Correctly Classified Human,Spatial,0.12805905938148499
+Correctly Classified Human,Temporal,0.14354245364665985
+Correctly Classified Human,Spatial,0.1222098097205162
+Correctly Classified Human,Temporal,0.13426946103572845
+Correctly Classified Human,Spatial,0.1276414841413498
+Correctly Classified Human,Temporal,0.1256561428308487
+Correctly Classified Human,Spatial,0.14917154610157013
+Correctly Classified Human,Temporal,0.14807400107383728
+Correctly Classified Human,Spatial,0.12502874433994293
+Correctly Classified Human,Temporal,0.13530752062797546
+Correctly Classified Human,Spatial,0.198744535446167
+Correctly Classified Human,Temporal,0.14217481017112732
+Correctly Classified Human,Spatial,0.15541890263557434
+Correctly Classified Human,Temporal,0.1273195594549179
+Correctly Classified Human,Spatial,0.10988704860210419
+Correctly Classified Human,Temporal,0.16535204648971558
+Correctly Classified Human,Spatial,0.1548888087272644
+Correctly Classified Human,Temporal,0.13724221289157867
+Correctly Classified Human,Spatial,0.10503462702035904
+Correctly Classified Human,Temporal,0.1756904572248459
+Correctly Classified Human,Spatial,0.11896900832653046
+Correctly Classified Human,Temporal,0.12996041774749756
+Correctly Classified Human,Spatial,0.18539956212043762
+Correctly Classified Human,Temporal,0.12366529554128647
+Correctly Classified Human,Spatial,0.13035368919372559
+Correctly Classified Human,Temporal,0.14983011782169342
+Correctly Classified Human,Spatial,0.12957057356834412
+Correctly Classified Human,Temporal,0.16381818056106567
+Correctly Classified Human,Spatial,0.13832250237464905
+Correctly Classified Human,Temporal,0.1606803685426712
+Correctly Classified Human,Spatial,0.11632797867059708
+Correctly Classified Human,Temporal,0.11699890345335007
+Correctly Classified Human,Spatial,0.11943914741277695
+Correctly Classified Human,Temporal,0.15250976383686066
+Correctly Classified Human,Spatial,0.11260180920362473
+Correctly Classified Human,Temporal,0.11596814543008804
+Correctly Classified Natural,Spatial,0.12250801175832748
+Correctly Classified Natural,Temporal,0.12404230982065201
+Correctly Classified Natural,Spatial,0.12650072574615479
+Correctly Classified Natural,Temporal,0.13309058547019958
+Correctly Classified Natural,Spatial,0.13370472192764282
+Correctly Classified Natural,Temporal,0.13305720686912537
+Correctly Classified Natural,Spatial,0.11544611304998398
+Correctly Classified Natural,Temporal,0.1023356020450592
+Correctly Classified Natural,Spatial,0.13034287095069885
+Correctly Classified Natural,Temporal,0.12871478497982025
+Correctly Classified Natural,Spatial,0.12620164453983307
+Correctly Classified Natural,Temporal,0.12511512637138367
+Correctly Classified Natural,Spatial,0.1331080198287964
+Correctly Classified Natural,Temporal,0.1332690268754959
+Correctly Classified Natural,Spatial,0.13693827390670776
+Correctly Classified Natural,Temporal,0.13964317739009857
+Correctly Classified Natural,Spatial,0.13670220971107483
+Correctly Classified Natural,Temporal,0.13556483387947083
+Correctly Classified Natural,Spatial,0.12466976791620255
+Correctly Classified Natural,Temporal,0.1247420683503151
+Correctly Classified Natural,Spatial,0.13103941082954407
+Correctly Classified Natural,Temporal,0.13040150701999664
+Correctly Classified Natural,Spatial,0.1294570416212082
+Correctly Classified Natural,Temporal,0.13299421966075897
+Correctly Classified Natural,Spatial,0.11387718468904495
+Correctly Classified Natural,Temporal,0.10309072583913803
+Correctly Classified Natural,Spatial,0.13258123397827148
+Correctly Classified Natural,Temporal,0.13914892077445984
+Correctly Classified Natural,Spatial,0.13179227709770203
+Correctly Classified Natural,Temporal,0.11859789490699768
+Correctly Classified Natural,Spatial,0.12875069677829742
+Correctly Classified Natural,Temporal,0.13111701607704163
+Correctly Classified Natural,Spatial,0.1325959712266922
+Correctly Classified Natural,Temporal,0.13347549736499786
+Correctly Classified Natural,Spatial,0.13622252643108368
+Correctly Classified Natural,Temporal,0.08346646279096603
+Correctly Classified Natural,Spatial,0.11878635734319687
+Correctly Classified Natural,Temporal,0.1343386024236679
+Correctly Classified Natural,Spatial,0.12418683618307114
+Correctly Classified Natural,Temporal,0.11818430572748184
+Correctly Classified Natural,Spatial,0.11977017670869827
+Correctly Classified Natural,Temporal,0.12220951169729233
+Correctly Classified Natural,Spatial,0.15976674854755402
+Correctly Classified Natural,Temporal,0.1206132173538208
+Correctly Classified Natural,Spatial,0.13581520318984985
+Correctly Classified Natural,Temporal,0.14045818150043488
+Correctly Classified Natural,Spatial,0.11231506615877151
+Correctly Classified Natural,Temporal,0.10753145068883896
+Correctly Classified Natural,Spatial,0.12051921337842941
+Correctly Classified Natural,Temporal,0.12167360633611679
+Correctly Classified Natural,Spatial,0.13781136274337769
+Correctly Classified Natural,Temporal,0.1399753987789154
+Correctly Classified Natural,Spatial,0.13607612252235413
+Correctly Classified Natural,Temporal,0.1368435174226761
+Correctly Classified Natural,Spatial,0.12731218338012695
+Correctly Classified Natural,Temporal,0.12047641724348068
+Correctly Classified Natural,Spatial,0.1346760392189026
+Correctly Classified Natural,Temporal,0.13890710473060608
+Correctly Classified Natural,Spatial,0.13636113703250885
+Correctly Classified Natural,Temporal,0.1382281333208084
+Misclassified Human,Spatial,0.11847975850105286
+Misclassified Human,Temporal,0.1181803047657013
+Misclassified Human,Spatial,0.13605785369873047
+Misclassified Human,Temporal,0.10058622062206268
+Misclassified Human,Spatial,0.13005894422531128
+Misclassified Human,Temporal,0.1311485916376114
+Misclassified Human,Spatial,0.11993289738893509
+Misclassified Human,Temporal,0.11617222428321838
+Misclassified Human,Spatial,0.13550564646720886
+Misclassified Human,Temporal,0.1400490254163742
+Misclassified Human,Spatial,0.13636869192123413
+Misclassified Human,Temporal,0.13723714649677277
+Misclassified Human,Spatial,0.1322924941778183
+Misclassified Human,Temporal,0.12960663437843323
+Misclassified Human,Spatial,0.10839874297380447
+Misclassified Human,Temporal,0.11642920970916748
+Misclassified Human,Spatial,0.12049512565135956
+Misclassified Human,Temporal,0.12729912996292114
+Misclassified Human,Spatial,0.12751616537570953
+Misclassified Human,Temporal,0.1307263970375061
+Misclassified Human,Spatial,0.24265359342098236
+Misclassified Human,Temporal,0.10149037837982178
+Misclassified Human,Spatial,0.1398598998785019
+Misclassified Human,Temporal,0.1216382086277008
+Misclassified Human,Spatial,0.1163414940237999
+Misclassified Human,Temporal,0.09607648104429245
+Misclassified Human,Spatial,0.13514403998851776
+Misclassified Human,Temporal,0.11613921076059341
+Misclassified Human,Spatial,0.1335640698671341
+Misclassified Human,Temporal,0.13522303104400635
+Misclassified Human,Spatial,0.12763094902038574
+Misclassified Human,Temporal,0.1272876113653183
+Misclassified Human,Spatial,0.13501878082752228
+Misclassified Human,Temporal,0.13610580563545227
+Misclassified Human,Spatial,0.1302182525396347
+Misclassified Human,Temporal,0.13253900408744812
+Misclassified Human,Spatial,0.1325201392173767
+Misclassified Human,Temporal,0.1349686086177826
+Misclassified Human,Spatial,0.1305873692035675
+Misclassified Human,Temporal,0.13228733837604523
+Misclassified Human,Spatial,0.13003665208816528
+Misclassified Human,Temporal,0.1274377852678299
+Misclassified Human,Spatial,0.10563484579324722
+Misclassified Human,Temporal,0.11290628463029861
+Misclassified Human,Spatial,0.11901095509529114
+Misclassified Human,Temporal,0.1233505830168724
+Misclassified Human,Spatial,0.12148299813270569
+Misclassified Human,Temporal,0.12205936759710312
+Misclassified Human,Spatial,0.13625213503837585
+Misclassified Human,Temporal,0.12108322978019714
+Misclassified Human,Spatial,0.12196075916290283
+Misclassified Human,Temporal,0.12053155153989792
+Misclassified Human,Spatial,0.13364751636981964
+Misclassified Human,Temporal,0.11709341406822205
+Misclassified Human,Spatial,0.13353084027767181
+Misclassified Human,Temporal,0.14116361737251282
+Misclassified Human,Spatial,0.1261824518442154
+Misclassified Human,Temporal,0.12871341407299042
+Misclassified Human,Spatial,0.12344498187303543
+Misclassified Human,Temporal,0.11744406074285507
+Misclassified Natural,Spatial,0.13640695810317993
+Misclassified Natural,Temporal,0.16348613798618317
+Misclassified Natural,Spatial,0.130697101354599
+Misclassified Natural,Temporal,0.15248708426952362
+Misclassified Natural,Spatial,0.1408199816942215
+Misclassified Natural,Temporal,0.14114773273468018
+Misclassified Natural,Spatial,0.1794838160276413
+Misclassified Natural,Temporal,0.12863324582576752
+Misclassified Natural,Spatial,0.12864302098751068
+Misclassified Natural,Temporal,0.12208034843206406
+Misclassified Natural,Spatial,0.13595816493034363
+Misclassified Natural,Temporal,0.13375720381736755
+Misclassified Natural,Spatial,0.15816260874271393
+Misclassified Natural,Temporal,0.12966041266918182
+Misclassified Natural,Spatial,0.13209937512874603
+Misclassified Natural,Temporal,0.12805001437664032
+Misclassified Natural,Spatial,0.16305240988731384
+Misclassified Natural,Temporal,0.12263190746307373
+Misclassified Natural,Spatial,0.12434552609920502
+Misclassified Natural,Temporal,0.14177650213241577
+Misclassified Natural,Spatial,0.13523319363594055
+Misclassified Natural,Temporal,0.1518542319536209
+Misclassified Natural,Spatial,0.12558512389659882
+Misclassified Natural,Temporal,0.16101007163524628
+Misclassified Natural,Spatial,0.13378043472766876
+Misclassified Natural,Temporal,0.15181373059749603
+Misclassified Natural,Spatial,0.12705014646053314
+Misclassified Natural,Temporal,0.155216246843338
+Misclassified Natural,Spatial,0.16114015877246857
+Misclassified Natural,Temporal,0.14957226812839508
+Misclassified Natural,Spatial,0.16999834775924683
+Misclassified Natural,Temporal,0.14075851440429688
+Misclassified Natural,Spatial,0.10641089081764221
+Misclassified Natural,Temporal,0.13463625311851501
+Misclassified Natural,Spatial,0.1516830325126648
+Misclassified Natural,Temporal,0.14533060789108276
+Misclassified Natural,Spatial,0.14268478751182556
+Misclassified Natural,Temporal,0.15352679789066315
+Misclassified Natural,Spatial,0.14650331437587738
+Misclassified Natural,Temporal,0.1443687230348587
+Misclassified Natural,Spatial,0.15167368948459625
+Misclassified Natural,Temporal,0.16283948719501495
+Misclassified Natural,Spatial,0.1282503306865692
+Misclassified Natural,Temporal,0.14636921882629395
+Misclassified Natural,Spatial,0.13104401528835297
+Misclassified Natural,Temporal,0.1270110011100769
+Misclassified Natural,Spatial,0.1259644776582718
+Misclassified Natural,Temporal,0.1292487531900406
+Misclassified Natural,Spatial,0.14129304885864258
+Misclassified Natural,Temporal,0.17578285932540894
+Misclassified Natural,Spatial,0.1238127127289772
+Misclassified Natural,Temporal,0.161223366856575
+Misclassified Natural,Spatial,0.12543898820877075
+Misclassified Natural,Temporal,0.1259775608778
+Misclassified Natural,Spatial,0.2288622111082077
+Misclassified Natural,Temporal,0.09868661314249039
+Misclassified Natural,Spatial,0.15605562925338745
+Misclassified Natural,Temporal,0.12488527595996857
+Misclassified Natural,Spatial,0.11445540934801102
+Misclassified Natural,Temporal,0.12399082630872726

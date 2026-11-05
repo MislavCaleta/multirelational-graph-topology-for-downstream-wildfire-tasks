@@ -1,0 +1,481 @@
+Category,Feature,GNN Branch Attribution
+Correctly Classified Human,Log-Area,0.14884822070598602
+Correctly Classified Human,Latitude,0.1572619527578354
+Correctly Classified Human,Longitude,0.15336793661117554
+Correctly Classified Human,Days Since Start,0.1459185928106308
+Correctly Classified Human,Log-Area,0.15290801227092743
+Correctly Classified Human,Latitude,0.1440700888633728
+Correctly Classified Human,Longitude,0.16132007539272308
+Correctly Classified Human,Days Since Start,0.1476985514163971
+Correctly Classified Human,Log-Area,0.16276347637176514
+Correctly Classified Human,Latitude,0.1795521378517151
+Correctly Classified Human,Longitude,0.17001235485076904
+Correctly Classified Human,Days Since Start,0.16466876864433289
+Correctly Classified Human,Log-Area,0.1453189253807068
+Correctly Classified Human,Latitude,0.14977797865867615
+Correctly Classified Human,Longitude,0.14534908533096313
+Correctly Classified Human,Days Since Start,0.1426730453968048
+Correctly Classified Human,Log-Area,0.16221797466278076
+Correctly Classified Human,Latitude,0.15840046107769012
+Correctly Classified Human,Longitude,0.14831659197807312
+Correctly Classified Human,Days Since Start,0.16568320989608765
+Correctly Classified Human,Log-Area,0.15980857610702515
+Correctly Classified Human,Latitude,0.14621731638908386
+Correctly Classified Human,Longitude,0.14786429703235626
+Correctly Classified Human,Days Since Start,0.15648552775382996
+Correctly Classified Human,Log-Area,0.1553434133529663
+Correctly Classified Human,Latitude,0.14950346946716309
+Correctly Classified Human,Longitude,0.1596463918685913
+Correctly Classified Human,Days Since Start,0.14842024445533752
+Correctly Classified Human,Log-Area,0.1445547342300415
+Correctly Classified Human,Latitude,0.1462388038635254
+Correctly Classified Human,Longitude,0.15121830999851227
+Correctly Classified Human,Days Since Start,0.1477499157190323
+Correctly Classified Human,Log-Area,0.14602576196193695
+Correctly Classified Human,Latitude,0.1799708902835846
+Correctly Classified Human,Longitude,0.17430143058300018
+Correctly Classified Human,Days Since Start,0.1617002636194229
+Correctly Classified Human,Log-Area,0.1578247994184494
+Correctly Classified Human,Latitude,0.14798209071159363
+Correctly Classified Human,Longitude,0.15042394399642944
+Correctly Classified Human,Days Since Start,0.1653759628534317
+Correctly Classified Human,Log-Area,0.15448147058486938
+Correctly Classified Human,Latitude,0.14683714509010315
+Correctly Classified Human,Longitude,0.15732628107070923
+Correctly Classified Human,Days Since Start,0.16878630220890045
+Correctly Classified Human,Log-Area,0.166183203458786
+Correctly Classified Human,Latitude,0.1488744169473648
+Correctly Classified Human,Longitude,0.14604313671588898
+Correctly Classified Human,Days Since Start,0.16199994087219238
+Correctly Classified Human,Log-Area,0.14695484936237335
+Correctly Classified Human,Latitude,0.17618246376514435
+Correctly Classified Human,Longitude,0.15995097160339355
+Correctly Classified Human,Days Since Start,0.15177664160728455
+Correctly Classified Human,Log-Area,0.15815921127796173
+Correctly Classified Human,Latitude,0.1505342721939087
+Correctly Classified Human,Longitude,0.16796976327896118
+Correctly Classified Human,Days Since Start,0.15153275430202484
+Correctly Classified Human,Log-Area,0.15322959423065186
+Correctly Classified Human,Latitude,0.1494792401790619
+Correctly Classified Human,Longitude,0.1604999601840973
+Correctly Classified Human,Days Since Start,0.15152709186077118
+Correctly Classified Human,Log-Area,0.15962930023670197
+Correctly Classified Human,Latitude,0.18155430257320404
+Correctly Classified Human,Longitude,0.1602303832769394
+Correctly Classified Human,Days Since Start,0.16022363305091858
+Correctly Classified Human,Log-Area,0.15671846270561218
+Correctly Classified Human,Latitude,0.14974267780780792
+Correctly Classified Human,Longitude,0.17020323872566223
+Correctly Classified Human,Days Since Start,0.15101537108421326
+Correctly Classified Human,Log-Area,0.15051934123039246
+Correctly Classified Human,Latitude,0.21316874027252197
+Correctly Classified Human,Longitude,0.17913897335529327
+Correctly Classified Human,Days Since Start,0.17670594155788422
+Correctly Classified Human,Log-Area,0.15392014384269714
+Correctly Classified Human,Latitude,0.18741019070148468
+Correctly Classified Human,Longitude,0.14443708956241608
+Correctly Classified Human,Days Since Start,0.15006358921527863
+Correctly Classified Human,Log-Area,0.15211844444274902
+Correctly Classified Human,Latitude,0.1583075374364853
+Correctly Classified Human,Longitude,0.15847159922122955
+Correctly Classified Human,Days Since Start,0.1646239012479782
+Correctly Classified Human,Log-Area,0.16671091318130493
+Correctly Classified Human,Latitude,0.14739595353603363
+Correctly Classified Human,Longitude,0.15035776793956757
+Correctly Classified Human,Days Since Start,0.1640801876783371
+Correctly Classified Human,Log-Area,0.15083853900432587
+Correctly Classified Human,Latitude,0.15248122811317444
+Correctly Classified Human,Longitude,0.15814802050590515
+Correctly Classified Human,Days Since Start,0.16456523537635803
+Correctly Classified Human,Log-Area,0.15158358216285706
+Correctly Classified Human,Latitude,0.14902783930301666
+Correctly Classified Human,Longitude,0.16286583244800568
+Correctly Classified Human,Days Since Start,0.14868879318237305
+Correctly Classified Human,Log-Area,0.16647227108478546
+Correctly Classified Human,Latitude,0.1505754142999649
+Correctly Classified Human,Longitude,0.14308449625968933
+Correctly Classified Human,Days Since Start,0.15779216587543488
+Correctly Classified Human,Log-Area,0.1648489087820053
+Correctly Classified Human,Latitude,0.16234908998012543
+Correctly Classified Human,Longitude,0.16191264986991882
+Correctly Classified Human,Days Since Start,0.15735504031181335
+Correctly Classified Human,Log-Area,0.16809473931789398
+Correctly Classified Human,Latitude,0.16988423466682434
+Correctly Classified Human,Longitude,0.16451723873615265
+Correctly Classified Human,Days Since Start,0.1727628856897354
+Correctly Classified Human,Log-Area,0.1571006327867508
+Correctly Classified Human,Latitude,0.15565943717956543
+Correctly Classified Human,Longitude,0.1535155326128006
+Correctly Classified Human,Days Since Start,0.16575990617275238
+Correctly Classified Human,Log-Area,0.14255189895629883
+Correctly Classified Human,Latitude,0.15299609303474426
+Correctly Classified Human,Longitude,0.14472754299640656
+Correctly Classified Human,Days Since Start,0.14203208684921265
+Correctly Classified Human,Log-Area,0.14738012850284576
+Correctly Classified Human,Latitude,0.16620486974716187
+Correctly Classified Human,Longitude,0.15125933289527893
+Correctly Classified Human,Days Since Start,0.15432359278202057
+Correctly Classified Human,Log-Area,0.15794196724891663
+Correctly Classified Human,Latitude,0.14812493324279785
+Correctly Classified Human,Longitude,0.16298872232437134
+Correctly Classified Human,Days Since Start,0.14539343118667603
+Correctly Classified Natural,Log-Area,0.19258281588554382
+Correctly Classified Natural,Latitude,0.14837226271629333
+Correctly Classified Natural,Longitude,0.14557628333568573
+Correctly Classified Natural,Days Since Start,0.15461067855358124
+Correctly Classified Natural,Log-Area,0.19498874247074127
+Correctly Classified Natural,Latitude,0.15326835215091705
+Correctly Classified Natural,Longitude,0.15278464555740356
+Correctly Classified Natural,Days Since Start,0.157954141497612
+Correctly Classified Natural,Log-Area,0.21838714182376862
+Correctly Classified Natural,Latitude,0.1456202268600464
+Correctly Classified Natural,Longitude,0.1605570912361145
+Correctly Classified Natural,Days Since Start,0.16028782725334167
+Correctly Classified Natural,Log-Area,0.21728110313415527
+Correctly Classified Natural,Latitude,0.1498892605304718
+Correctly Classified Natural,Longitude,0.14663878083229065
+Correctly Classified Natural,Days Since Start,0.15640275180339813
+Correctly Classified Natural,Log-Area,0.2014140486717224
+Correctly Classified Natural,Latitude,0.1429283618927002
+Correctly Classified Natural,Longitude,0.14829638600349426
+Correctly Classified Natural,Days Since Start,0.1496904492378235
+Correctly Classified Natural,Log-Area,0.2100309580564499
+Correctly Classified Natural,Latitude,0.14976829290390015
+Correctly Classified Natural,Longitude,0.14671321213245392
+Correctly Classified Natural,Days Since Start,0.1605922281742096
+Correctly Classified Natural,Log-Area,0.19348403811454773
+Correctly Classified Natural,Latitude,0.14402182400226593
+Correctly Classified Natural,Longitude,0.16290906071662903
+Correctly Classified Natural,Days Since Start,0.1578112095594406
+Correctly Classified Natural,Log-Area,0.18950492143630981
+Correctly Classified Natural,Latitude,0.14721590280532837
+Correctly Classified Natural,Longitude,0.1531151533126831
+Correctly Classified Natural,Days Since Start,0.15362463891506195
+Correctly Classified Natural,Log-Area,0.20396819710731506
+Correctly Classified Natural,Latitude,0.15240344405174255
+Correctly Classified Natural,Longitude,0.1696099042892456
+Correctly Classified Natural,Days Since Start,0.15669113397598267
+Correctly Classified Natural,Log-Area,0.19419166445732117
+Correctly Classified Natural,Latitude,0.143244668841362
+Correctly Classified Natural,Longitude,0.1449599415063858
+Correctly Classified Natural,Days Since Start,0.15433506667613983
+Correctly Classified Natural,Log-Area,0.18988542258739471
+Correctly Classified Natural,Latitude,0.15024662017822266
+Correctly Classified Natural,Longitude,0.15049509704113007
+Correctly Classified Natural,Days Since Start,0.1552002876996994
+Correctly Classified Natural,Log-Area,0.20627132058143616
+Correctly Classified Natural,Latitude,0.1443449854850769
+Correctly Classified Natural,Longitude,0.14846660196781158
+Correctly Classified Natural,Days Since Start,0.15541328489780426
+Correctly Classified Natural,Log-Area,0.19128653407096863
+Correctly Classified Natural,Latitude,0.16983817517757416
+Correctly Classified Natural,Longitude,0.155388742685318
+Correctly Classified Natural,Days Since Start,0.14435312151908875
+Correctly Classified Natural,Log-Area,0.2093343585729599
+Correctly Classified Natural,Latitude,0.14686962962150574
+Correctly Classified Natural,Longitude,0.1520422399044037
+Correctly Classified Natural,Days Since Start,0.15396848320960999
+Correctly Classified Natural,Log-Area,0.19531381130218506
+Correctly Classified Natural,Latitude,0.1439112424850464
+Correctly Classified Natural,Longitude,0.16342374682426453
+Correctly Classified Natural,Days Since Start,0.1475806087255478
+Correctly Classified Natural,Log-Area,0.20500415563583374
+Correctly Classified Natural,Latitude,0.1432172954082489
+Correctly Classified Natural,Longitude,0.14709347486495972
+Correctly Classified Natural,Days Since Start,0.1573670208454132
+Correctly Classified Natural,Log-Area,0.1967676877975464
+Correctly Classified Natural,Latitude,0.14139410853385925
+Correctly Classified Natural,Longitude,0.15455125272274017
+Correctly Classified Natural,Days Since Start,0.15248924493789673
+Correctly Classified Natural,Log-Area,0.20572324097156525
+Correctly Classified Natural,Latitude,0.14648836851119995
+Correctly Classified Natural,Longitude,0.14375431835651398
+Correctly Classified Natural,Days Since Start,0.14333978295326233
+Correctly Classified Natural,Log-Area,0.199684277176857
+Correctly Classified Natural,Latitude,0.14331333339214325
+Correctly Classified Natural,Longitude,0.15400321781635284
+Correctly Classified Natural,Days Since Start,0.15153825283050537
+Correctly Classified Natural,Log-Area,0.19913135468959808
+Correctly Classified Natural,Latitude,0.14523082971572876
+Correctly Classified Natural,Longitude,0.14195413887500763
+Correctly Classified Natural,Days Since Start,0.15879331529140472
+Correctly Classified Natural,Log-Area,0.21653155982494354
+Correctly Classified Natural,Latitude,0.1423805207014084
+Correctly Classified Natural,Longitude,0.1511945128440857
+Correctly Classified Natural,Days Since Start,0.1594315469264984
+Correctly Classified Natural,Log-Area,0.21263070404529572
+Correctly Classified Natural,Latitude,0.14860957860946655
+Correctly Classified Natural,Longitude,0.14948903024196625
+Correctly Classified Natural,Days Since Start,0.15767376124858856
+Correctly Classified Natural,Log-Area,0.19091086089611053
+Correctly Classified Natural,Latitude,0.15406280755996704
+Correctly Classified Natural,Longitude,0.16145484149456024
+Correctly Classified Natural,Days Since Start,0.16392864286899567
+Correctly Classified Natural,Log-Area,0.20075777173042297
+Correctly Classified Natural,Latitude,0.15199825167655945
+Correctly Classified Natural,Longitude,0.14288093149662018
+Correctly Classified Natural,Days Since Start,0.15117041766643524
+Correctly Classified Natural,Log-Area,0.2029079794883728
+Correctly Classified Natural,Latitude,0.15049344301223755
+Correctly Classified Natural,Longitude,0.1615637242794037
+Correctly Classified Natural,Days Since Start,0.15463224053382874
+Correctly Classified Natural,Log-Area,0.19685295224189758
+Correctly Classified Natural,Latitude,0.14912289381027222
+Correctly Classified Natural,Longitude,0.156636044383049
+Correctly Classified Natural,Days Since Start,0.16120989620685577
+Correctly Classified Natural,Log-Area,0.19791579246520996
+Correctly Classified Natural,Latitude,0.15251240134239197
+Correctly Classified Natural,Longitude,0.15765710175037384
+Correctly Classified Natural,Days Since Start,0.15926800668239594
+Correctly Classified Natural,Log-Area,0.20390981435775757
+Correctly Classified Natural,Latitude,0.1446026712656021
+Correctly Classified Natural,Longitude,0.14447979629039764
+Correctly Classified Natural,Days Since Start,0.145835742354393
+Correctly Classified Natural,Log-Area,0.2024373561143875
+Correctly Classified Natural,Latitude,0.14493033289909363
+Correctly Classified Natural,Longitude,0.1497941017150879
+Correctly Classified Natural,Days Since Start,0.15069393813610077
+Correctly Classified Natural,Log-Area,0.1979251354932785
+Correctly Classified Natural,Latitude,0.15516257286071777
+Correctly Classified Natural,Longitude,0.14748403429985046
+Correctly Classified Natural,Days Since Start,0.162126362323761
+Misclassified Human,Log-Area,0.20600855350494385
+Misclassified Human,Latitude,0.1530291587114334
+Misclassified Human,Longitude,0.1624661237001419
+Misclassified Human,Days Since Start,0.15217405557632446
+Misclassified Human,Log-Area,0.1985338181257248
+Misclassified Human,Latitude,0.1487526148557663
+Misclassified Human,Longitude,0.14917536079883575
+Misclassified Human,Days Since Start,0.14898571372032166
+Misclassified Human,Log-Area,0.19567973911762238
+Misclassified Human,Latitude,0.14607538282871246
+Misclassified Human,Longitude,0.1475757211446762
+Misclassified Human,Days Since Start,0.15610218048095703
+Misclassified Human,Log-Area,0.20009061694145203
+Misclassified Human,Latitude,0.15277686715126038
+Misclassified Human,Longitude,0.15153561532497406
+Misclassified Human,Days Since Start,0.16636621952056885
+Misclassified Human,Log-Area,0.19012071192264557
+Misclassified Human,Latitude,0.14598362147808075
+Misclassified Human,Longitude,0.15617582201957703
+Misclassified Human,Days Since Start,0.16143594682216644
+Misclassified Human,Log-Area,0.20319905877113342
+Misclassified Human,Latitude,0.14405618607997894
+Misclassified Human,Longitude,0.1653892993927002
+Misclassified Human,Days Since Start,0.157174214720726
+Misclassified Human,Log-Area,0.19836290180683136
+Misclassified Human,Latitude,0.15404336154460907
+Misclassified Human,Longitude,0.15806475281715393
+Misclassified Human,Days Since Start,0.15740522742271423
+Misclassified Human,Log-Area,0.1913343220949173
+Misclassified Human,Latitude,0.1439594179391861
+Misclassified Human,Longitude,0.14622962474822998
+Misclassified Human,Days Since Start,0.15152324736118317
+Misclassified Human,Log-Area,0.212025985121727
+Misclassified Human,Latitude,0.14971789717674255
+Misclassified Human,Longitude,0.16805969178676605
+Misclassified Human,Days Since Start,0.15366142988204956
+Misclassified Human,Log-Area,0.19172821938991547
+Misclassified Human,Latitude,0.14345496892929077
+Misclassified Human,Longitude,0.15258005261421204
+Misclassified Human,Days Since Start,0.15297488868236542
+Misclassified Human,Log-Area,0.2548883855342865
+Misclassified Human,Latitude,0.14132030308246613
+Misclassified Human,Longitude,0.19067490100860596
+Misclassified Human,Days Since Start,0.1667935848236084
+Misclassified Human,Log-Area,0.1921304613351822
+Misclassified Human,Latitude,0.15154556930065155
+Misclassified Human,Longitude,0.17885072529315948
+Misclassified Human,Days Since Start,0.1496497094631195
+Misclassified Human,Log-Area,0.18868950009346008
+Misclassified Human,Latitude,0.14908170700073242
+Misclassified Human,Longitude,0.15675587952136993
+Misclassified Human,Days Since Start,0.14614181220531464
+Misclassified Human,Log-Area,0.17974503338336945
+Misclassified Human,Latitude,0.14304755628108978
+Misclassified Human,Longitude,0.16431939601898193
+Misclassified Human,Days Since Start,0.14443404972553253
+Misclassified Human,Log-Area,0.18734069168567657
+Misclassified Human,Latitude,0.14550350606441498
+Misclassified Human,Longitude,0.1518503874540329
+Misclassified Human,Days Since Start,0.15517038106918335
+Misclassified Human,Log-Area,0.1944769024848938
+Misclassified Human,Latitude,0.14332541823387146
+Misclassified Human,Longitude,0.15809166431427002
+Misclassified Human,Days Since Start,0.159035325050354
+Misclassified Human,Log-Area,0.18453936278820038
+Misclassified Human,Latitude,0.1437418907880783
+Misclassified Human,Longitude,0.15279138088226318
+Misclassified Human,Days Since Start,0.15777595341205597
+Misclassified Human,Log-Area,0.2070409655570984
+Misclassified Human,Latitude,0.1447746604681015
+Misclassified Human,Longitude,0.15060150623321533
+Misclassified Human,Days Since Start,0.1494085192680359
+Misclassified Human,Log-Area,0.2086987942457199
+Misclassified Human,Latitude,0.14928026497364044
+Misclassified Human,Longitude,0.15005534887313843
+Misclassified Human,Days Since Start,0.15777792036533356
+Misclassified Human,Log-Area,0.1980644017457962
+Misclassified Human,Latitude,0.14538811147212982
+Misclassified Human,Longitude,0.15469937026500702
+Misclassified Human,Days Since Start,0.15799053013324738
+Misclassified Human,Log-Area,0.21068903803825378
+Misclassified Human,Latitude,0.14766055345535278
+Misclassified Human,Longitude,0.14869847893714905
+Misclassified Human,Days Since Start,0.1527491956949234
+Misclassified Human,Log-Area,0.19063247740268707
+Misclassified Human,Latitude,0.15408337116241455
+Misclassified Human,Longitude,0.1521310806274414
+Misclassified Human,Days Since Start,0.14930877089500427
+Misclassified Human,Log-Area,0.2009408175945282
+Misclassified Human,Latitude,0.1474146544933319
+Misclassified Human,Longitude,0.14666248857975006
+Misclassified Human,Days Since Start,0.14926409721374512
+Misclassified Human,Log-Area,0.18314997851848602
+Misclassified Human,Latitude,0.15707460045814514
+Misclassified Human,Longitude,0.14947272837162018
+Misclassified Human,Days Since Start,0.15665921568870544
+Misclassified Human,Log-Area,0.2013249695301056
+Misclassified Human,Latitude,0.14487135410308838
+Misclassified Human,Longitude,0.17765945196151733
+Misclassified Human,Days Since Start,0.15821726620197296
+Misclassified Human,Log-Area,0.1999073177576065
+Misclassified Human,Latitude,0.1486498862504959
+Misclassified Human,Longitude,0.14713655412197113
+Misclassified Human,Days Since Start,0.1525101214647293
+Misclassified Human,Log-Area,0.21192561089992523
+Misclassified Human,Latitude,0.15413878858089447
+Misclassified Human,Longitude,0.1619357466697693
+Misclassified Human,Days Since Start,0.16650521755218506
+Misclassified Human,Log-Area,0.21026922762393951
+Misclassified Human,Latitude,0.14628908038139343
+Misclassified Human,Longitude,0.15304499864578247
+Misclassified Human,Days Since Start,0.1544341742992401
+Misclassified Human,Log-Area,0.20435680449008942
+Misclassified Human,Latitude,0.14120543003082275
+Misclassified Human,Longitude,0.15443553030490875
+Misclassified Human,Days Since Start,0.1568656861782074
+Misclassified Human,Log-Area,0.19714608788490295
+Misclassified Human,Latitude,0.15422144532203674
+Misclassified Human,Longitude,0.14791034162044525
+Misclassified Human,Days Since Start,0.15622568130493164
+Misclassified Natural,Log-Area,0.18251582980155945
+Misclassified Natural,Latitude,0.1517648994922638
+Misclassified Natural,Longitude,0.1682475507259369
+Misclassified Natural,Days Since Start,0.17438487708568573
+Misclassified Natural,Log-Area,0.16530604660511017
+Misclassified Natural,Latitude,0.1543278843164444
+Misclassified Natural,Longitude,0.152217298746109
+Misclassified Natural,Days Since Start,0.1616755872964859
+Misclassified Natural,Log-Area,0.16061317920684814
+Misclassified Natural,Latitude,0.15550069510936737
+Misclassified Natural,Longitude,0.16002428531646729
+Misclassified Natural,Days Since Start,0.1515035629272461
+Misclassified Natural,Log-Area,0.1472991704940796
+Misclassified Natural,Latitude,0.18722200393676758
+Misclassified Natural,Longitude,0.1695169061422348
+Misclassified Natural,Days Since Start,0.15685276687145233
+Misclassified Natural,Log-Area,0.14964143931865692
+Misclassified Natural,Latitude,0.17547538876533508
+Misclassified Natural,Longitude,0.14345672726631165
+Misclassified Natural,Days Since Start,0.142516627907753
+Misclassified Natural,Log-Area,0.147491917014122
+Misclassified Natural,Latitude,0.15769337117671967
+Misclassified Natural,Longitude,0.17168152332305908
+Misclassified Natural,Days Since Start,0.1526472121477127
+Misclassified Natural,Log-Area,0.15486812591552734
+Misclassified Natural,Latitude,0.15650981664657593
+Misclassified Natural,Longitude,0.16367806494235992
+Misclassified Natural,Days Since Start,0.15741455554962158
+Misclassified Natural,Log-Area,0.16256821155548096
+Misclassified Natural,Latitude,0.15202946960926056
+Misclassified Natural,Longitude,0.14967593550682068
+Misclassified Natural,Days Since Start,0.15645138919353485
+Misclassified Natural,Log-Area,0.15481460094451904
+Misclassified Natural,Latitude,0.19074739515781403
+Misclassified Natural,Longitude,0.15856735408306122
+Misclassified Natural,Days Since Start,0.1523122936487198
+Misclassified Natural,Log-Area,0.14634700119495392
+Misclassified Natural,Latitude,0.15503108501434326
+Misclassified Natural,Longitude,0.1485765278339386
+Misclassified Natural,Days Since Start,0.15297351777553558
+Misclassified Natural,Log-Area,0.18031218647956848
+Misclassified Natural,Latitude,0.15587233006954193
+Misclassified Natural,Longitude,0.15310019254684448
+Misclassified Natural,Days Since Start,0.16001951694488525
+Misclassified Natural,Log-Area,0.1679907739162445
+Misclassified Natural,Latitude,0.15374138951301575
+Misclassified Natural,Longitude,0.1528962403535843
+Misclassified Natural,Days Since Start,0.16527464985847473
+Misclassified Natural,Log-Area,0.17203179001808167
+Misclassified Natural,Latitude,0.1644580215215683
+Misclassified Natural,Longitude,0.1607833206653595
+Misclassified Natural,Days Since Start,0.16697746515274048
+Misclassified Natural,Log-Area,0.16313476860523224
+Misclassified Natural,Latitude,0.15308432281017303
+Misclassified Natural,Longitude,0.16092026233673096
+Misclassified Natural,Days Since Start,0.15264548361301422
+Misclassified Natural,Log-Area,0.16987870633602142
+Misclassified Natural,Latitude,0.14963102340698242
+Misclassified Natural,Longitude,0.15789735317230225
+Misclassified Natural,Days Since Start,0.16878372430801392
+Misclassified Natural,Log-Area,0.16415536403656006
+Misclassified Natural,Latitude,0.141776904463768
+Misclassified Natural,Longitude,0.15863029658794403
+Misclassified Natural,Days Since Start,0.17294791340827942
+Misclassified Natural,Log-Area,0.15762127935886383
+Misclassified Natural,Latitude,0.15283147990703583
+Misclassified Natural,Longitude,0.16878445446491241
+Misclassified Natural,Days Since Start,0.15006329119205475
+Misclassified Natural,Log-Area,0.15307024121284485
+Misclassified Natural,Latitude,0.18161779642105103
+Misclassified Natural,Longitude,0.1630248874425888
+Misclassified Natural,Days Since Start,0.15175656974315643
+Misclassified Natural,Log-Area,0.15378616750240326
+Misclassified Natural,Latitude,0.17959924042224884
+Misclassified Natural,Longitude,0.17393618822097778
+Misclassified Natural,Days Since Start,0.1696799099445343
+Misclassified Natural,Log-Area,0.1554674655199051
+Misclassified Natural,Latitude,0.1737850159406662
+Misclassified Natural,Longitude,0.17445561289787292
+Misclassified Natural,Days Since Start,0.16279132664203644
+Misclassified Natural,Log-Area,0.17142248153686523
+Misclassified Natural,Latitude,0.15421228110790253
+Misclassified Natural,Longitude,0.15741775929927826
+Misclassified Natural,Days Since Start,0.1713029444217682
+Misclassified Natural,Log-Area,0.16391578316688538
+Misclassified Natural,Latitude,0.15381263196468353
+Misclassified Natural,Longitude,0.14773012697696686
+Misclassified Natural,Days Since Start,0.16145309805870056
+Misclassified Natural,Log-Area,0.15214985609054565
+Misclassified Natural,Latitude,0.16856855154037476
+Misclassified Natural,Longitude,0.14770418405532837
+Misclassified Natural,Days Since Start,0.14467333257198334
+Misclassified Natural,Log-Area,0.15475374460220337
+Misclassified Natural,Latitude,0.15185271203517914
+Misclassified Natural,Longitude,0.15321089327335358
+Misclassified Natural,Days Since Start,0.14774225652217865
+Misclassified Natural,Log-Area,0.15991833806037903
+Misclassified Natural,Latitude,0.16414935886859894
+Misclassified Natural,Longitude,0.15072987973690033
+Misclassified Natural,Days Since Start,0.17287777364253998
+Misclassified Natural,Log-Area,0.16453053057193756
+Misclassified Natural,Latitude,0.16126976907253265
+Misclassified Natural,Longitude,0.15742045640945435
+Misclassified Natural,Days Since Start,0.1672297716140747
+Misclassified Natural,Log-Area,0.15144595503807068
+Misclassified Natural,Latitude,0.16851890087127686
+Misclassified Natural,Longitude,0.1441948413848877
+Misclassified Natural,Days Since Start,0.14452826976776123
+Misclassified Natural,Log-Area,0.1639525294303894
+Misclassified Natural,Latitude,0.1495775431394577
+Misclassified Natural,Longitude,0.15247942507266998
+Misclassified Natural,Days Since Start,0.14594025909900665
+Misclassified Natural,Log-Area,0.15279361605644226
+Misclassified Natural,Latitude,0.15173670649528503
+Misclassified Natural,Longitude,0.1921798437833786
+Misclassified Natural,Days Since Start,0.15055802464485168
+Misclassified Natural,Log-Area,0.15722016990184784
+Misclassified Natural,Latitude,0.14974209666252136
+Misclassified Natural,Longitude,0.16596023738384247
+Misclassified Natural,Days Since Start,0.15052004158496857
